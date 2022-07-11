@@ -7,7 +7,11 @@ library(data.table)
 
 #Número de puntos a graficar:
 #Number of point to plot
-repeticiones <- 500000
+N <- 500000
+
+#Largo de los lados de la imágen final
+#Length of sides in final image
+size <- 25
 
 #Crear un triangulo equilatero al azar
 #Create a equilateral random triangle
@@ -45,11 +49,11 @@ punto.inicial <- (1-sqrt(r[1]))*vertices[1,] + sqrt(r[1]) * (1 - r[2]) * vertice
 #Encuentro el punto intermedio entre el punto al azar y un vertice al azar. El proceso se repite las veces indicada:
 #Finding the middle point between the random point and one of the vertexes, randomly selected. Repeat the process as many times as it was commanded:
 
-puntos.x <- vector("numeric", repeticiones)
+puntos.x <- vector("numeric", N)
 puntos.y <- puntos.x
 
-for(i in 1:repeticiones){
-  cat("\rRepetición", i, "de", repeticiones)
+for(i in 1:N){
+  cat("\rRepetición", i, "de", N)
   cual.vertice <- sample(1:3, 1)
   punto.inicial <- c(mean(c(vertices[cual.vertice, 1], punto.inicial[1])), mean(c(vertices[cual.vertice, 2], punto.inicial[2])))
   puntos.x[i] <- punto.inicial[1]
@@ -70,4 +74,4 @@ plot.triangulos <-  puntos.nuevos %>%
 
 #Guardado como imagne
 #Save as image
-ggsave("fractal_triangle.png", plot.triangulos, width = 25, height = 25, dpi = 800)
+ggsave("fractal_triangle.png", plot.triangulos, width = size, height = size, dpi = 800)

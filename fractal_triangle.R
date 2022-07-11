@@ -11,7 +11,7 @@ N <- 500000
 
 #Largo de los lados de la imágen final
 #Length of sides in final image
-size <- 25
+size <- 20
 
 #Crear un triangulo equilatero al azar
 #Create a equilateral random triangle
